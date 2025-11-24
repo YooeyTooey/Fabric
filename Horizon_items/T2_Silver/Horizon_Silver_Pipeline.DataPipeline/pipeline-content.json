@@ -1,0 +1,241 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "Horizon_silver_config.json"
+              }
+            },
+            "schema": {},
+            "linkedService": {
+              "name": "Silver_Horizon_Test",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "49b778a8-ea5d-86bb-4730-b5e9cb63792a",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_Silver_Configuration",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0c4501c0-fbbc-a2d4-4ca7-2d8d17b02a3c",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "workspaceID": {
+              "value": {
+                "value": "@activity('Lookup_Silver_Configuration').output.firstRow.workspaceID",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "silverlakehouseID": {
+              "value": {
+                "value": "@activity('Lookup_Silver_Configuration').output.firstRow.silverlakehouseID",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "bronzelakehouseID": {
+              "value": {
+                "value": "@activity('Lookup_Silver_Configuration').output.firstRow.bronzelakehouseID",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Bronze_Tables_Fetch",
+        "dependsOn": [
+          {
+            "activity": "Lookup_Silver_Configuration",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Lookup_Bronze_Configuration",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@json(activity('Bronze_Tables_Fetch').output.result.exitValue)\n",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "6942f2b8-5217-8aa4-40b7-adfeb7f0d8e3",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "bronze_table_name": {
+                    "value": {
+                      "value": "@item()",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Horizon_Tables_ColumnNames_Standardization",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "db9d3401-90e7-acce-49b1-7ed5803e44c2",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "table_name": {
+                    "value": {
+                      "value": "@item()",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "silver_lakehouse": {
+                    "value": {
+                      "value": "@activity('Lookup_Silver_Configuration').output.firstRow.silverlakehouseID",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Column_and_Duplicates_Transformation",
+              "dependsOn": [
+                {
+                  "activity": "Horizon_Tables_ColumnNames_Standardization",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Table_transformation_and_loading",
+        "dependsOn": [
+          {
+            "activity": "Bronze_Tables_Fetch",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "Horizon_config.json"
+              }
+            },
+            "schema": {},
+            "linkedService": {
+              "name": "Bronze_Horizon_Test",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "ffbf7d29-99b3-8397-4a83-48156726287a",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_Bronze_Configuration",
+        "dependsOn": []
+      }
+    ]
+  }
+}

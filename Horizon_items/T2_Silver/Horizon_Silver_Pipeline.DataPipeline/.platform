@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Horizon_Silver_Pipeline"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "41900285-6f4e-abf0-4d39-4b393236f202"
+  }
+}

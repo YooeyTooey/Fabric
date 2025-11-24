@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Bronze_Horizon_Pipeline"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c8d69f3b-8b13-9e1a-4dde-5c631cda79d9"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/graphqlApi/definition/1.0.0/schema.json",
+  "datasources": [
+    {
+      "objects": [
+        {
+          "actions": {
+            "Query": "Enabled",
+            "Query_by_pk": "Enabled",
+            "Create": "Enabled",
+            "Update": "Enabled",
+            "Delete": "Enabled"
+          },
+          "fieldMappings": {
+            "grant_code": "grant_code",
+            "sectorname": "sectorname"
+          },
+          "graphqlType": "silver_dim_grantsectormap",
+          "relationships": [],
+          "sourceObject": "dbo.silver_dim_grantsectormap",
+          "sourceObjectType": "Table"
+        }
+      ],
+      "sourceItemId": "2280f041-404c-4373-819d-061a166855de",
+      "sourceType": "LakeWarehouse",
+      "sourceWorkspaceId": "4bd5b086-3b44-4645-8b35-d81df1d61106"
+    },
+    {
+      "objects": [
+        {
+          "actions": {
+            "Query": "Enabled",
+            "Query_by_pk": "Enabled",
+            "Create": "Enabled",
+            "Update": "Enabled",
+            "Delete": "Enabled"
+          },
+          "fieldMappings": {
+            "A9": "A9",
+            "account_code": "account_code",
+            "asofendmonth": "asofendmonth",
+            "bu_code": "bu_code",
+            "data_refresh": "data_refresh",
+            "date_added": "date_added",
+            "fiscal_year": "fiscal_year",
+            "grant_amount": "grant_amount",
+            "ledger_code": "ledger_code",
+            "Local_Amount": "Local_Amount",
+            "mypbas_doc_number": "mypbas_doc_number",
+            "period": "period",
+            "unq_mypbas_codet6": "unq_mypbas_codet6",
+            "unqt0": "unqt0",
+            "unqt1": "unqt1",
+            "unqt2": "unqt2",
+            "unqt3": "unqt3",
+            "unqt4": "unqt4",
+            "unqt5": "unqt5",
+            "unqt7": "unqt7",
+            "unqt8": "unqt8",
+            "unqt9": "unqt9",
+            "USD_Amount": "USD_Amount"
+          },
+          "graphqlType": "ytd_actual_summary",
+          "relationships": [],
+          "sourceObject": "Gold.ytd_actual_summary",
+          "sourceObjectType": "Table"
+        }
+      ],
+      "sourceItemId": "325c1556-635f-40db-ac7e-963b8697d356",
+      "sourceType": "SqlAnalyticsEndpoint",
+      "sourceWorkspaceId": "5a5a7ce9-c78d-4181-9489-87935e86fb7d"
+    }
+  ]
+}
