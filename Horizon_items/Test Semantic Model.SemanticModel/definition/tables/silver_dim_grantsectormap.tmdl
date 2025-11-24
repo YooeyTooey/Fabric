@@ -1,0 +1,33 @@
+table silver_dim_grantsectormap
+	lineageTag: fc57ab53-3b1f-4e28-9a2d-0f6feeecfa6f
+	sourceLineageTag: [dbo].[silver_dim_grantsectormap]
+
+	column grant_code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7fdac001-2dbc-4449-bbfb-3114c4683c2f
+		sourceLineageTag: grant_code
+		summarizeBy: none
+		sourceColumn: grant_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column sectorname
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6d254560-4dc3-4dbb-8090-d5781cee4f51
+		sourceLineageTag: sectorname
+		summarizeBy: none
+		sourceColumn: sectorname
+
+		annotation SummarizationSetBy = Automatic
+
+	partition silver_dim_grantsectormap = entity
+		mode: directLake
+		source
+			entityName: silver_dim_grantsectormap
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

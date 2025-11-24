@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "Horizon_GrantAmount_by_Project_Fact_Table_Creation_NB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d0638969-7cde-8591-41a8-b836f6cf11aa"
+  }
+}
