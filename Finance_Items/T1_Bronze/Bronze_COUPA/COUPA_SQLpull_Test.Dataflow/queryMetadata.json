@@ -1,0 +1,39 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "COUPA_SQLpull_Test",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "41d7518d-8be2-4b4d-94da-48a8311a8979",
+  "queriesMetadata": {
+    "DefaultDestination": {
+      "queryId": "e8596391-c4e9-4f29-b940-c0cea55d2ff3",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "invoice_header": {
+      "queryId": "ac4d8ab0-372d-430d-8ffa-0e9175265e26",
+      "queryName": "invoice_header",
+      "loadEnabled": false
+    },
+    "invoice_header_DataDestination": {
+      "queryId": "b0d9c221-32b4-498d-9728-304647ecbef7",
+      "queryName": "invoice_header_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "10.202.8.50",
+      "kind": "SQL",
+      "connectionId": "{\"ClusterId\":\"41d7518d-8be2-4b4d-94da-48a8311a8979\",\"DatasourceId\":\"ae3c93a6-28d9-4e3a-be45-ca8bd505669c\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"41d7518d-8be2-4b4d-94da-48a8311a8979\",\"DatasourceId\":\"11e78b14-5a9c-4b58-92f8-8c36f8fc221c\"}"
+    }
+  ]
+}

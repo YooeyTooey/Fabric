@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "SUN_Column_Names_Transformation_and_Standardization_Analysis_NB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "acc6ba43-87de-b84a-4d58-58b1137ff4a4"
+  }
+}

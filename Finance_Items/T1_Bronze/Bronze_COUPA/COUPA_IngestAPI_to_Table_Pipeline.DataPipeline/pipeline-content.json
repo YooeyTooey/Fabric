@@ -1,0 +1,227 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "COUPA_API_config.json"
+              }
+            },
+            "schema": {},
+            "linkedService": {
+              "name": "Bronze_COUPA_Test",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "db0795aa-44a4-95fe-4137-d9e82dcbfe8e",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Coupa_config",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('Coupa_tables').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "7da0bddb-8ac0-a649-4eb7-d0d64333ed32",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "CLIENT_ID": {
+                    "value": {
+                      "value": "@activity('Coupa_config').output.firstRow.CLIENT_ID",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "CLIENT_SECRET": {
+                    "value": {
+                      "value": "@activity('Coupa_config').output.firstRow.CLIENT_SECRET",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "SCOPE": {
+                    "value": {
+                      "value": "@activity('Coupa_config').output.firstRow.SCOPE",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "end_point": {
+                    "value": {
+                      "value": "@item().end_point",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "table_name": {
+                    "value": {
+                      "value": "@item().table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "COUA_APICall_NB_test",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "09f9d197-3f3d-be58-4417-6c6ae2bf56d3",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "table_name": {
+                    "value": {
+                      "value": "@item().table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Coupa_Date_Append",
+              "description": "add time_stamp column to tables for ingestion time",
+              "dependsOn": [
+                {
+                  "activity": "COUA_APICall_NB_test",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "Get_all_table_in_API_config",
+        "dependsOn": [
+          {
+            "activity": "Coupa_config",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Coupa_tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "COUPA_config.json"
+              }
+            },
+            "schema": {},
+            "linkedService": {
+              "name": "Bronze_COUPA_Test",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "db0795aa-44a4-95fe-4137-d9e82dcbfe8e",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Coupa_tables",
+        "dependsOn": []
+      }
+    ],
+    "variables": {
+      "end_point": {
+        "type": "String"
+      },
+      "dbgItem": {
+        "type": "String"
+      }
+    }
+  }
+}

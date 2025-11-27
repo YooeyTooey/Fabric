@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "Bronze_PBAS_Test",
+    "description": ""
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7d1d7450-4d93-9649-47d5-57721bc7e1c8"
+  }
+}

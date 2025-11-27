@@ -1,0 +1,33 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "PBAS_SQLpull_Test2",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "f38c4557-b174-4edf-8e34-bde5c55aa163",
+  "queriesMetadata": {
+    "B1PBAS_FY25_Upload_SSIS_RAW_20250930": {
+      "queryId": "237eb2c7-2238-4329-8392-327d59303cab",
+      "queryName": "B1PBAS_FY25_Upload_SSIS_RAW_20250930",
+      "loadEnabled": false
+    },
+    "B1PBAS_FY25_Upload_SSIS_RAW_20250930_DataDestination": {
+      "queryId": "1bffd644-3524-4cd6-82a4-26d623cec4af",
+      "queryName": "B1PBAS_FY25_Upload_SSIS_RAW_20250930_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "10.204.32.134",
+      "kind": "SQL",
+      "connectionId": "{\"ClusterId\":\"f38c4557-b174-4edf-8e34-bde5c55aa163\",\"DatasourceId\":\"87c6cc04-ad34-4e1f-b0f3-8acaa60e6fc5\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f38c4557-b174-4edf-8e34-bde5c55aa163\",\"DatasourceId\":\"23f0a0d8-128f-46d5-9b7a-4ec8c5ef3d38\"}"
+    }
+  ]
+}

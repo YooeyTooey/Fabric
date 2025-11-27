@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "COUPA_DateAppend"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "09f9d197-3f3d-be58-4417-6c6ae2bf56d3"
+  }
+}

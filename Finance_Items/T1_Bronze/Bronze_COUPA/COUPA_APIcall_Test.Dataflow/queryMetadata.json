@@ -1,0 +1,38 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "COUA_APIcall_Test",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "f38c4557-b174-4edf-8e34-bde5c55aa163",
+  "queriesMetadata": {
+    "bronze_invoice_header_incremental": {
+      "queryId": "ee61b40a-5d6c-43a0-8180-da6341edccab",
+      "queryName": "bronze_invoice_header_incremental",
+      "loadEnabled": false
+    },
+    "bronze_invoice_header_incremental_DataDestination": {
+      "queryId": "f1da902b-eb1e-4968-88f9-2e38d4a498ad",
+      "queryName": "bronze_invoice_header_incremental_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "https://wvi-stage.coupahost.com/api/invoices",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"f38c4557-b174-4edf-8e34-bde5c55aa163\",\"DatasourceId\":\"dfbf07ff-941f-43e3-8166-8cf47df42758\"}"
+    },
+    {
+      "path": "https://wvi-stage.coupahost.com/oauth2/token",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"e9b03126-86e3-445d-8993-81242587d0a0\",\"DatasourceId\":\"e7934219-7660-49b6-b628-dc0cb2fd7001\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f38c4557-b174-4edf-8e34-bde5c55aa163\",\"DatasourceId\":\"8ef5a593-c6ab-44ef-9b1e-4081fe4407ce\"}"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "PBAS_Fact_Silver_Table_Loading_NB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "53946ec3-5c30-8608-4b8e-ea293664e719"
+  }
+}

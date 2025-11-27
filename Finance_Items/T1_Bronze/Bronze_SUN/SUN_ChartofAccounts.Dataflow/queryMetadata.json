@@ -1,0 +1,33 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "SUN_ChartofAccounts",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "f38c4557-b174-4edf-8e34-bde5c55aa163",
+  "queriesMetadata": {
+    "SUNEXTRACT_ACCOUNTS": {
+      "queryId": "c550f8bf-baab-4586-8ece-6a4c92c6be15",
+      "queryName": "SUNEXTRACT_ACCOUNTS",
+      "loadEnabled": false
+    },
+    "SUNEXTRACT_ACCOUNTS_DataDestination": {
+      "queryId": "028b771c-c32f-41cf-911d-148495813a31",
+      "queryName": "SUNEXTRACT_ACCOUNTS_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "10.204.32.133",
+      "kind": "SQL",
+      "connectionId": "{\"ClusterId\":\"f38c4557-b174-4edf-8e34-bde5c55aa163\",\"DatasourceId\":\"799dfaf2-1593-4bfc-b590-11117aa44ed1\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"e9b03126-86e3-445d-8993-81242587d0a0\",\"DatasourceId\":\"f7c79cfa-6123-4154-9c82-b5a8791c0ff4\"}"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "SUN_SQLPull",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "CY Transaction Details_CE": {
+      "queryId": "c9407e93-e9fd-4ae9-b5da-d294c21e111d",
+      "queryName": "CY Transaction Details_CE",
+      "loadEnabled": false
+    },
+    "CY Transaction Details_CE_DataDestination": {
+      "queryId": "3d7bd23e-4eca-440d-abfa-452f38146752",
+      "queryName": "CY Transaction Details_CE_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "PowerPlatformDataflows",
+      "kind": "PowerPlatformDataflows",
+      "connectionId": "{\"ClusterId\":\"e9b03126-86e3-445d-8993-81242587d0a0\",\"DatasourceId\":\"c16bb489-c182-4fcb-ac92-00782048dbbc\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"e9b03126-86e3-445d-8993-81242587d0a0\",\"DatasourceId\":\"f7c79cfa-6123-4154-9c82-b5a8791c0ff4\"}"
+    }
+  ]
+}

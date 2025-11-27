@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Silver_PBAS_2nd_Approach_Pipeline"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ca725d93-737e-a074-4293-b281e8802ab8"
+  }
+}

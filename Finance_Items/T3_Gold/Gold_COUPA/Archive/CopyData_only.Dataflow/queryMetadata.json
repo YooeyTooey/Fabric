@@ -1,0 +1,31 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "CopyData_only",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "gold_coupa_invoice_header": {
+      "queryId": "88d43715-f93e-461e-bab8-9baf750633f6",
+      "queryName": "gold_coupa_invoice_header"
+    },
+    "gold_coupa_invoice_header_DataDestination": {
+      "queryId": "aa452eca-0228-42b2-b75b-55f497d1bdf5",
+      "queryName": "gold_coupa_invoice_header_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"e9b03126-86e3-445d-8993-81242587d0a0\",\"DatasourceId\":\"52c199a9-e794-49fc-aee4-ac7d9edffe87\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"e9b03126-86e3-445d-8993-81242587d0a0\",\"DatasourceId\":\"4c57b4ac-718f-4544-a651-15c096fbcfb2\"}"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "StandardTCodes",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "f38c4557-b174-4edf-8e34-bde5c55aa163",
+  "queriesMetadata": {
+    "SUNEXTRACT_ANALYSIS": {
+      "queryId": "3623e052-fe86-403f-b96e-7763ec6e61bf",
+      "queryName": "SUNEXTRACT_ANALYSIS",
+      "loadEnabled": false
+    },
+    "SUNEXTRACT_ANALYSIS_DataDestination": {
+      "queryId": "f7f3df6f-f070-4232-8493-e8c2368aa4fa",
+      "queryName": "SUNEXTRACT_ANALYSIS_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "10.204.32.133",
+      "kind": "SQL",
+      "connectionId": "{\"ClusterId\":\"f38c4557-b174-4edf-8e34-bde5c55aa163\",\"DatasourceId\":\"799dfaf2-1593-4bfc-b590-11117aa44ed1\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"e9b03126-86e3-445d-8993-81242587d0a0\",\"DatasourceId\":\"f7c79cfa-6123-4154-9c82-b5a8791c0ff4\"}"
+    }
+  ]
+}

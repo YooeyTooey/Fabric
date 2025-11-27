@@ -1,0 +1,54 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[sp_COUPA_upsert_invoice_header]"
+        },
+        "connectionSettings": {
+          "name": "Gold_Finance",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "a4d2a346-a04c-4953-bd96-5eff5466c570",
+              "endpoint": "gdqfdojyv7lubpil7pwtzb3fhi-usqgls5r6hpuvkxnps77afeo7a.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "cb65a0a4-f1b1-4adf-aaed-7cbff0148ef8"
+            },
+            "externalReferences": {
+              "connection": "4c57b4ac-718f-4544-a651-15c096fbcfb2"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Ingest_Invoice_header",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "6c6dab6d-d0ed-a496-4e63-c025850a6426",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Ingest_Invoice_header_Gold",
+        "dependsOn": []
+      }
+    ]
+  }
+}

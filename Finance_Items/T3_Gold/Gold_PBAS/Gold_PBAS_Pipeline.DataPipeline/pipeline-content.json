@@ -1,0 +1,297 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "PBAS_config.json"
+              }
+            },
+            "schema": {},
+            "connectionSettings": {
+              "name": "Silver_PBAS_Test",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "5b3b498e-b247-8fc8-4ecc-f8a5d8662dd1",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "externalReferences": {
+                  "connection": "23f0a0d8-128f-46d5-9b7a-4ec8c5ef3d38"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_Silver_PBAS_Config",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "db63e104-0637-af16-49e1-48541fb50db6",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "workspaceID": {
+              "value": {
+                "value": "@activity('Lookup_Silver_PBAS_Config').output.firstRow.workspaceID",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "silverlakehouseID": {
+              "value": {
+                "value": "@activity('Lookup_Silver_PBAS_Config').output.firstRow.silverlakehouseID",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Silver_PBAS_Tables_Fetch",
+        "dependsOn": [
+          {
+            "activity": "Lookup_Silver_PBAS_Config",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Lookup_Gold_PBAS_Config",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@json(activity('Silver_PBAS_Tables_Fetch').output.result.exitValue)",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "IfCondition",
+              "typeProperties": {
+                "expression": {
+                  "value": "@equals('silver_pbas_test', item())",
+                  "type": "Expression"
+                },
+                "ifTrueActivities": [
+                  {
+                    "type": "TridentNotebook",
+                    "typeProperties": {
+                      "notebookId": "a344e3c4-a31c-89ee-43be-87e4e93426ce",
+                      "workspaceId": "00000000-0000-0000-0000-000000000000",
+                      "parameters": {
+                        "workspaceID": {
+                          "value": {
+                            "value": "@activity('Lookup_Silver_PBAS_Config').output.firstRow.workspaceID",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        },
+                        "silverlakehouseID": {
+                          "value": {
+                            "value": "@activity('Lookup_Silver_PBAS_Config').output.firstRow.silverlakehouseID",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Notebook1",
+                    "dependsOn": []
+                  }
+                ],
+                "ifFalseActivities": [
+                  {
+                    "type": "TridentNotebook",
+                    "typeProperties": {
+                      "notebookId": "f7e72071-1dcc-ada7-4868-7ef498e65413",
+                      "workspaceId": "00000000-0000-0000-0000-000000000000",
+                      "parameters": {
+                        "table_name": {
+                          "value": {
+                            "value": "@item()",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        },
+                        "goldlakehouseID": {
+                          "value": {
+                            "value": "@activity('Lookup_Gold_PBAS_Config').output.firstRow.goldlakehouseID",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        },
+                        "silverlakehouseID": {
+                          "value": {
+                            "value": "@activity('Lookup_Silver_PBAS_Config').output.firstRow.silverlakehouseID",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        },
+                        "silverworkspaceID": {
+                          "value": {
+                            "value": "@activity('Lookup_Silver_PBAS_Config').output.firstRow.workspaceID",
+                            "type": "Expression"
+                          },
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Notebook2",
+                    "dependsOn": []
+                  }
+                ]
+              },
+              "name": "Dim_and_Fact_conditions",
+              "dependsOn": [
+                {
+                  "activity": "Set variable1",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SetVariable",
+              "typeProperties": {
+                "variableName": "table_name",
+                "value": {
+                  "value": "@item()",
+                  "type": "Expression"
+                }
+              },
+              "policy": {
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Set variable1",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "PBAS_Tables_transform_and_load",
+        "dependsOn": [
+          {
+            "activity": "Silver_PBAS_Tables_Fetch",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "PBAS_config.json"
+              }
+            },
+            "schema": {},
+            "connectionSettings": {
+              "name": "Gold_Finance_LH",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "eb337e93-2630-42a8-b860-ff9834be952d",
+                  "workspaceId": "5a5a7ce9-c78d-4181-9489-87935e86fb7d",
+                  "rootFolder": "Files"
+                },
+                "externalReferences": {
+                  "connection": "23f0a0d8-128f-46d5-9b7a-4ec8c5ef3d38"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_Gold_PBAS_Config",
+        "dependsOn": []
+      }
+    ],
+    "variables": {
+      "table_name": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "COUPA_Ingest_Bronze_to_Silver_InvoiceHeader"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c817a74b-3969-b8c1-4ff0-dbbc8228e315"
+  }
+}

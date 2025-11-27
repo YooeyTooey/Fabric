@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "PBAS_SQLpull_Test2"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f229ef4b-7ab9-b22c-4374-c0e6294e29af"
+  }
+}

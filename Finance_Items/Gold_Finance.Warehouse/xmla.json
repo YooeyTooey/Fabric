@@ -1,0 +1,649 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1604,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "gold_coupa_invoice_header",
+        "sourceLineageTag": "[dbo].[gold_coupa_invoice_header]",
+        "columns": [
+          {
+            "name": "invoice_id",
+            "dataType": "int64",
+            "sourceColumn": "invoice_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "invoice_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "created_date",
+            "dataType": "dateTime",
+            "sourceColumn": "created_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "created_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "updated_date",
+            "dataType": "dateTime",
+            "sourceColumn": "updated_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "updated_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "delivery_method",
+            "dataType": "string",
+            "sourceColumn": "delivery_method",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "delivery_method",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "invoice_date",
+            "dataType": "dateTime",
+            "sourceColumn": "invoice_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "invoice_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "invoice_number",
+            "dataType": "string",
+            "sourceColumn": "invoice_number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "invoice_number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "lco_tax_id",
+            "dataType": "string",
+            "sourceColumn": "lco_tax_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "lco_tax_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "on_time_payment",
+            "dataType": "string",
+            "sourceColumn": "on_time_payment",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "on_time_payment",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "scanning_on_time",
+            "dataType": "string",
+            "sourceColumn": "scanning_on_time",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "scanning_on_time",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "overdue_from_supplier",
+            "dataType": "string",
+            "sourceColumn": "overdue_from_supplier",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "overdue_from_supplier",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "registering_on_time",
+            "dataType": "string",
+            "sourceColumn": "registering_on_time",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "registering_on_time",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "hub_entity",
+            "dataType": "string",
+            "sourceColumn": "hub_entity",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "hub_entity",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "blanket_po",
+            "dataType": "string",
+            "sourceColumn": "blanket_po",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "blanket_po",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "shipping_term",
+            "dataType": "string",
+            "sourceColumn": "shipping_term",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "shipping_term",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "national_office_po",
+            "dataType": "string",
+            "sourceColumn": "national_office_po",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "national_office_po",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "lco_t3_code",
+            "dataType": "string",
+            "sourceColumn": "lco_t3_code",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "lco_t3_code",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "lco_t9_code",
+            "dataType": "string",
+            "sourceColumn": "lco_t9_code",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "lco_t9_code",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "invoice_approval_date",
+            "dataType": "dateTime",
+            "sourceColumn": "invoice_approval_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "invoice_approval_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "supplier_name",
+            "dataType": "string",
+            "sourceColumn": "supplier_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "supplier_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "date_received",
+            "dataType": "dateTime",
+            "sourceColumn": "date_received",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "date_received",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "payment_date",
+            "dataType": "dateTime",
+            "sourceColumn": "payment_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "payment_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "inbox_entry_date",
+            "dataType": "dateTime",
+            "sourceColumn": "inbox_entry_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "inbox_entry_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "coa",
+            "dataType": "string",
+            "sourceColumn": "coa",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "coa",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "supplier_number",
+            "dataType": "string",
+            "sourceColumn": "supplier_number",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "supplier_number",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "created_by_login",
+            "dataType": "string",
+            "sourceColumn": "created_by_login",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "created_by_login",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "created_by_name",
+            "dataType": "string",
+            "sourceColumn": "created_by_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "created_by_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "updated_by_login",
+            "dataType": "string",
+            "sourceColumn": "updated_by_login",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "updated_by_login",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "updated_by_name",
+            "dataType": "string",
+            "sourceColumn": "updated_by_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "updated_by_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "time_stamp",
+            "dataType": "dateTime",
+            "sourceColumn": "time_stamp",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "time_stamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "gl_date",
+            "dataType": "dateTime",
+            "sourceColumn": "gl_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "gl_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "printer_location",
+            "dataType": "string",
+            "sourceColumn": "printer_location",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "printer_location",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "invoice_description",
+            "dataType": "string",
+            "sourceColumn": "invoice_description",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "invoice_description",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "lco_t8_code",
+            "dataType": "string",
+            "sourceColumn": "lco_t8_code",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "lco_t8_code",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "currency",
+            "dataType": "string",
+            "sourceColumn": "currency",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "currency",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "payment_term",
+            "dataType": "string",
+            "sourceColumn": "payment_term",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "payment_term",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "invoice_status",
+            "dataType": "string",
+            "sourceColumn": "invoice_status",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "invoice_status",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "total",
+            "dataType": "double",
+            "sourceColumn": "total",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "total",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "net_due_date",
+            "dataType": "dateTime",
+            "sourceColumn": "net_due_date",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "net_due_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "paid",
+            "dataType": "boolean",
+            "sourceColumn": "paid",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "bit",
+            "sourceLineageTag": "paid",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "invoice_receipt_date_from_supplier",
+            "dataType": "dateTime",
+            "sourceColumn": "invoice_receipt_date_from_supplier",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "invoice_receipt_date_from_supplier",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "gpo_processing_fee",
+            "dataType": "string",
+            "sourceColumn": "gpo_processing_fee",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "gpo_processing_fee",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "gold_coupa_invoice_header",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "Silver_SUN_config.json"
+              }
+            },
+            "schema": {},
+            "connectionSettings": {
+              "name": "Silver_SUN_Test",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "80f92bba-e594-8dd5-489e-3c55092b1c77",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "externalReferences": {
+                  "connection": "f7c79cfa-6123-4154-9c82-b5a8791c0ff4"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_SUN_SIlver_Config",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "acc6ba43-87de-b84a-4d58-58b1137ff4a4",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "silverlakehouseID": {
+              "value": {
+                "value": "@activity('Lookup_SUN_SIlver_Config').output.firstRow.silverlakehouseID",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "SUN_Silver_Analysis_Table_Creation",
+        "dependsOn": [
+          {
+            "activity": "Lookup_SUN_SIlver_Config",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "db21f30c-faf6-8815-43e3-6fcc359ff4a2",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "silverlakehouseID": {
+              "value": {
+                "value": "@activity('Lookup_SUN_SIlver_Config').output.firstRow.silverlakehouseID",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "SUN_Silver_COA_Table_Creation",
+        "dependsOn": [
+          {
+            "activity": "SUN_Silver_Analysis_Table_Creation",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "96127d78-6983-a016-4354-671a297f4ede",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "silverlakehouseID": {
+              "value": {
+                "value": "@activity('Lookup_SUN_SIlver_Config').output.firstRow.silverlakehouseID",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "SUN_Silver_Fact_Table_Creation",
+        "dependsOn": [
+          {
+            "activity": "SUN_Silver_COA_Table_Creation",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

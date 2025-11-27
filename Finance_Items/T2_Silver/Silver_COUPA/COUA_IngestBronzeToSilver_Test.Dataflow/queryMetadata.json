@@ -1,0 +1,28 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "COUA_IngestBronzeToSilver_Test",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "f38c4557-b174-4edf-8e34-bde5c55aa163",
+  "queriesMetadata": {
+    "bronze_invoice_header": {
+      "queryId": "1b7d6c55-9a2a-46f0-b43a-6569f4583439",
+      "queryName": "bronze_invoice_header",
+      "loadEnabled": false
+    },
+    "bronze_invoice_header_DataDestination": {
+      "queryId": "75041f7e-4c85-4555-86e6-4b2ab8141741",
+      "queryName": "bronze_invoice_header_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"f38c4557-b174-4edf-8e34-bde5c55aa163\",\"DatasourceId\":\"8ef5a593-c6ab-44ef-9b1e-4081fe4407ce\"}"
+    }
+  ]
+}

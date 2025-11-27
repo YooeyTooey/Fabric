@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "Silver_COUPA_Test",
+    "description": ""
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d23fb23b-1264-91dd-48a5-4401cbdc82e1"
+  }
+}

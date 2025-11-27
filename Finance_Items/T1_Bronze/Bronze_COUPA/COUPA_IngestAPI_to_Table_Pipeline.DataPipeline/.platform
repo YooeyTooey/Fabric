@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "COUPA_IngestAPI_to_Table_Pipeline"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "622e03ca-e919-8c11-4397-6654c2307a86"
+  }
+}

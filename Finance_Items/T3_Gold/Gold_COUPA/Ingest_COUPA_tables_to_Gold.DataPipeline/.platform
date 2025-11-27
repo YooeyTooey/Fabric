@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Ingest_COUPA_tables_to_Gold"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4129c3cc-92d9-8655-48dd-0c1670b60fb8"
+  }
+}

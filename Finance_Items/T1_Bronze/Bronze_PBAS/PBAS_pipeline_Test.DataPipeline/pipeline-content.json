@@ -1,0 +1,156 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "f229ef4b-7ab9-b22c-4374-c0e6294e29af",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "PBAS_SQLpull",
+        "description": "Pulls PBAS table to Lakehouse table via SSMS connection to fabric",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "80a8f67b-40c3-869a-4e0a-7e8253def898",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Metadata_Append_NB",
+        "description": "Appends a date added column to the table",
+        "dependsOn": [
+          {
+            "activity": "PBAS_SQLpull",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a8a2b99d-43a2-8c9d-454b-321892e34aef",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "workspaceID": {
+              "value": {
+                "value": "@activity('Lookup_PBAS_config').output.firstRow.workspaceID",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "lakehouseID": {
+              "value": {
+                "value": "@activity('Lookup_PBAS_config').output.firstRow.lakehouseID",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "PBAS_Dimensions_Load_NB",
+        "description": "Loads PBAS dimension tables details from a JSON file and proceeds to prep and create a table based from the fact table",
+        "dependsOn": [
+          {
+            "activity": "Metadata_Append_NB",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Lookup_PBAS_config",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "Configuration",
+                "fileName": "PBAS_config.json"
+              }
+            },
+            "schema": {},
+            "linkedService": {
+              "name": "Bronze_PBAS_Test",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "7d1d7450-4d93-9649-47d5-57721bc7e1c8",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_PBAS_config",
+        "dependsOn": [
+          {
+            "activity": "PBAS_SQLpull",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "PBAS Dim output": {
+        "type": "String"
+      }
+    }
+  }
+}
