@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "Horizon_AI_integration_content_translation"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2c91b0d0-8f16-a232-44aa-7cc690833d7c"
+  }
+}
